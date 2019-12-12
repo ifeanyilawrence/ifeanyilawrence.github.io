@@ -2,8 +2,8 @@
 					Js Main
 --------------------------------------------------
 
-    Template Name: Baha - Personal Portfolio Template
-    Author: Malyarchuk
+    Template Name: Law - Personal Portfolio
+    Author: Lawrence
     Copyright: 2019
 
 --------------------------------------------------
@@ -206,63 +206,12 @@ $(document).ready(function() {
             },
 
             submitHandler: function (form) {
-                $.ajax({
-                    type: "POST",
-                    url: "mail.php",
-                    data: $(form).serialize(),
-                    success: function () {
-                        $( "#loader").hide();
-                        $( "#success").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#success").slideUp( "slow" );
-                        }, 3000);
-                        form.reset();
-                    },
-                    error: function() {
-                        $( "#loader").hide();
-                        $( "#error").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#error").slideUp( "slow" );
-                        }, 3000);
-                    }
-                });
+                
+                window.open(`mailto:ifeanyilawrence.eze@gmail.com?subject=Dev Contact&body=${$("#name").val()}: ${$("#note").val()}`);
+                
                 return false;
             }
 
         });
     }
-	
-	/* Google Map Setup */
-    if($('#map').length) {
-        initMap();
-     };
-
 });
-
-/* -----------------------------------
-  		14. Google Map
------------------------------------ */
-function initMap() {
-    var latitude = $("#map").data('latitude'),
-        longitude = $("#map").data('longitude'),
-        zoom = $("#map").data('zoom'),
-        cordinates = new google.maps.LatLng(latitude, longitude);
-
-    var styles = [{"stylers":[{"saturation":-100},{"gamma":0.8},{"lightness":4},{"visibility":"on"}]},{"featureType":"landscape.natural","stylers":[{"visibility":"on"},{"color":"#5dff00"},{"gamma":4.97},{"lightness":-5},{"saturation":100}]}];
-	
-        var mapOptions = {
-        zoom: zoom,
-        center: cordinates,
-        mapTypeControl: false,
-        disableDefaultUI: true,
-        zoomControl: true,
-        scrollwheel: false,
-        styles: styles
-    };
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    var marker = new google.maps.Marker({
-        position: cordinates,
-        map: map,
-        title: "We are here!"
-    });
-}
